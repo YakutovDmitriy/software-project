@@ -40,3 +40,9 @@ def type_keyboard(strs, coords=None, seconds_to_wait=None):
       wsh.SendKeys(ch)
     wsh.SendKeys('~')
     time.sleep(0.05)
+
+def in_files(filename):
+  return '../files/%s' % filename
+
+def in_temps(filename):
+  return '../temp/%s' % filename

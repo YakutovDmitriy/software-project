@@ -1,12 +1,12 @@
 import pyscreenshot as grabber
 from PIL import Image
 import numpy as np
-from tools import arr2pic, pic2arr, bool_pic, type_keyboard
+from tools import arr2pic, pic2arr, bool_pic, type_keyboard, in_files, in_temps
 import random
 
 def from_display(bbox):
   im = grabber.grab(bbox=bbox)
-  im.save('pics/working.png')
+  # im.save(in_temps('working.png'))
   a = pic2arr(im)
   n, m = a.shape[0], a.shape[1]
   b = np.zeros((n, m))
@@ -19,7 +19,7 @@ def from_display(bbox):
   for i in range(n):
     for j in range(m):
       good[i, j] = b[i, j] == white
-  # bool_pic(good).save('pics/bool.png')
+  # bool_pic(good).save(in_temps('bool.png'))
   answer = []
   for i in range(n):
     lastR, curLen = -123, 0
@@ -42,8 +42,8 @@ def from_display(bbox):
         lastR = R
     if curLen > 0:
       answer.append(curLen)
-  if len(answer) > 9:
-    bool_pic(good).save('pics/bool.png')
+  # if len(answer) > 9:
+  #   bool_pic(good).save(in_temps('bool.png'))
   return answer
 
 def load_db(db):
@@ -67,10 +67,10 @@ def from_db(db, template):
 def main_loop():
   last_temps = []
   max_size = 5
-  with open('bbox/bbox.cfg') as cfg:
+  with open(in_files('bbox.cfg')) as cfg:
     bbox = eval(cfg.readline())
     click = (bbox[2] + 20, (bbox[1] + bbox[3]) // 2)
-  with open('dbs/db.txt') as dbf:
+  with open(in_files('db.txt')) as dbf:
     db = load_db(dbf)
   while True:
     template = from_display(bbox)

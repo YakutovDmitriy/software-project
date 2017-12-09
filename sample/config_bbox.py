@@ -1,16 +1,14 @@
 import pyscreenshot as grabber
 from PIL import Image
 import numpy as np
-from tools import arr2pic, pic2arr, bool_pic
-
+from tools import arr2pic, pic2arr, bool_pic, in_files, in_temps
 
 def config_bbox():
-  default = (223, 195, 543, 517)
-  red_pic = Image.open('pics/importants/red.png')
+  red_pic = Image.open(in_files('red.png'))
   red = pic2arr(red_pic)[0,0,:3]
   
   im = grabber.grab()
-  im.save('pics/config_scrsht.png')
+  im.save(in_temps('config_scrsht.png'))
   a = pic2arr(im)
   n, m, _ = a.shape
   good = np.zeros((n, m), dtype=bool)
@@ -18,7 +16,7 @@ def config_bbox():
     for j in range(m):
       if np.array_equal(a[i,j], red):
         good[i, j] = True
-  bool_pic(good).save('pics/conf_bool.png')
+  # bool_pic(good).save(in_temps('conf_bool.png'))
   bbox = None
   used = np.zeros((n, m), dtype=bool)
   for i in range(n):
@@ -42,11 +40,11 @@ def config_bbox():
           assert bbox == None
           bbox = (miny, minx, maxy, (5 * maxx + 4 * minx) // 9)
   assert bbox != None, 'you should launch confix_bbox when the circle is almost red'
-  print("bbox is", bbox)
-  grabber.grab(bbox).save('pics/X.png')
+  print("bbox is", bbox, file=sys.stderr)
+  grabber.grab(bbox).save(in_temps('X.png'))
   return bbox
 
 if __name__ == '__main__':
   bbox = config_bbox()
-  with open('bbox/bbox.cfg', 'w') as b:
+  with open(in_files('bbox.cfg'), 'w') as b:
     print(bbox, file=b)

@@ -14,7 +14,7 @@ def good(s):
   return s
 
 def main():
-  driver = webdriver.Chrome("chromedriver.exe")
+  driver = webdriver.Chrome(in_files('chromedriver.exe'))
   for direc in [-1, 1]:
     for page in range(1, 257):
       driver.get('https://www.thesongclash.com/en/song-list?page=%d&sorting=artist&direction=%d&filter=active' % (page, direc))
@@ -22,7 +22,7 @@ def main():
       table = driver.find_elements_by_tag_name("table")[0]
       tbody = table.find_elements_by_tag_name("tbody")[0]
       if tbody != None:
-        with open("dbs/download/song_in_%d_%d" % (page, direc), 'w') as f:
+        with open(in_temps('downloads/song_in_%d_%d') % (page, direc), 'w') as f:
           for elem in tbody.find_elements_by_tag_name("tr"):
             tds = elem.find_elements_by_tag_name("td")
             artist = tds[0].find_elements_by_tag_name("a")[0].find_elements_by_tag_name("span")[0].text
