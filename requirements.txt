@@ -1,0 +1,4 @@
+pillow
+pyscreenshot
+pypiwin32
+selenium
