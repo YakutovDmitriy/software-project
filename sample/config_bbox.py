@@ -1,7 +1,7 @@
 import pyscreenshot as grabber
 from PIL import Image
 import numpy as np
-from tools import arr2pic, pic2arr, bool_pic, in_files, in_temps
+from .tools import arr2pic, pic2arr, bool_pic, in_files, in_temps
 
 def config_bbox():
   red_pic = Image.open(in_files('red.png'))

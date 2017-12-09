@@ -9,11 +9,16 @@ with open('LICENSE') as f:
 setup(
     name='thesongclash-bot',
     version='0.1.0',
-    description='Bot for thesongclash.com',
+    description='Bot for www.thesongclash.com',
     long_description=readme,
     author='Yakutov Dmitry',
     author_email='yakutov@rain.ifmo.ru',
     url='https://github.com/YakutovDmitriy/software-project',
     license=license,
-    packages=find_packages(exclude=('bbox', 'dbs', 'pics'))
+    packages=['sample'],
+    entry_points={
+        'console_scripts': [
+            'lover=sample.lover:main_loop'
+        ]
+    }
 )

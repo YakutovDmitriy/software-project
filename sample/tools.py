@@ -25,24 +25,25 @@ def bool_pic(good):
           pic[i,j,x] = 255
   return arr2pic(pic)
 
+def get_wsh(__wsh=[comclt.Dispatch("WScript.Shell")]):
+  return __wsh[0]
 
-wsh = comclt.Dispatch("WScript.Shell")
 def type_keyboard(strs, coords=None, seconds_to_wait=None):
+  if seconds_to_wait != None:
+    time.sleep(seconds_to_wait)
   if coords != None:
     x, y = coords
     win32api.SetCursorPos((x, y))
     win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN, x, y, 0, 0)
     win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP, x, y, 0, 0)
-  if seconds_to_wait != None:
-    time.sleep(seconds_to_wait)
   for s in strs:
     for ch in s.lower():
-      wsh.SendKeys(ch)
-    wsh.SendKeys('~')
+      get_wsh().SendKeys(ch)
+    get_wsh().SendKeys('~')
     time.sleep(0.05)
 
 def in_files(filename):
-  return '../files/%s' % filename
+  return 'files/%s' % filename
 
 def in_temps(filename):
-  return '../temp/%s' % filename
+  return 'temp/%s' % filename
