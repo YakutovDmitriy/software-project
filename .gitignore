@@ -103,3 +103,5 @@ ENV/
 
 # additional
 pics/*.png
+temp/*
+temp/downloads/*

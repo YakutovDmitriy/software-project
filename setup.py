@@ -18,7 +18,8 @@ setup(
     packages=['sample'],
     entry_points={
         'console_scripts': [
-            'lover=sample.lover:main_loop'
+            'lover=sample.lover:main_loop',
+            'config_lover=sample.config_bbox:main'
         ]
     }
 )

@@ -2,6 +2,7 @@ import pyscreenshot as grabber
 from PIL import Image
 import numpy as np
 from .tools import arr2pic, pic2arr, bool_pic, in_files, in_temps
+import sys
 
 def config_bbox():
   red_pic = Image.open(in_files('red.png'))
@@ -43,8 +44,11 @@ def config_bbox():
   print("bbox is", bbox, file=sys.stderr)
   grabber.grab(bbox).save(in_temps('X.png'))
   return bbox
-
-if __name__ == '__main__':
+  
+def main():
   bbox = config_bbox()
   with open(in_files('bbox.cfg'), 'w') as b:
     print(bbox, file=b)
+
+if __name__ == '__main__':
+  main()

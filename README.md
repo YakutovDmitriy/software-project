@@ -1,7 +1,17 @@
-# software-project
+# Music lover
+Helper for game [thesongclash](https://www.thesongclash.com/)
 
-`config_bbox.py` -- script for initializing some necessary data. You need to launch it when there is less than 7 second to answer, when the time is almost gone. Please be sure that the main circle of page is visible for you while starting the script.
+## Requirments
 
-`getdb.py` -- script for updating songs database. You don't need to launch it.
+* pillow
+* pypiwin32
+* pyscreenshot
+* selenium
 
-`do.py` -- the main file. Launch it and open your browser to play.
+## Installation
+
+```python setup.py install```
+
+## Usage
+1. `config_lover` -- launch it when there is less than 7 second to answer, when the time is almost gone. Please be sure that the main circle of page is visible for you while starting the script.
+2. `lover` -- launch it for start the game. Please be sure that the main circle of page is visible for you while starting the script.
