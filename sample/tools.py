@@ -5,6 +5,7 @@ import win32api
 import win32con
 import win32com.client as comclt
 import time
+import os
 
 def arr2pic(arr):
   return Image.fromarray(np.uint8(arr))
@@ -42,8 +43,11 @@ def type_keyboard(strs, coords=None, seconds_to_wait=None):
     get_wsh().SendKeys('~')
     time.sleep(0.05)
 
+def get_filedir():
+  return os.path.dirname(os.path.abspath(__file__))
+
 def in_files(filename):
-  return 'files/%s' % filename
+  return os.path.join(get_filedir(), 'files', filename)
 
 def in_temps(filename):
-  return 'temp/%s' % filename
+  return os.path.join(get_filedir(), 'files', 'temp', filename)

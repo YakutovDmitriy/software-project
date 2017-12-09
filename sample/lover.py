@@ -3,6 +3,8 @@ from PIL import Image
 import numpy as np
 from .tools import arr2pic, pic2arr, bool_pic, type_keyboard, in_files, in_temps
 import random
+import os
+import glob, sys
 
 def from_display(bbox):
   im = grabber.grab(bbox=bbox)
@@ -75,7 +77,7 @@ def main_loop():
   while True:
     template = from_display(bbox)
     if template != None and not (template in last_temps):
-      did = False;
+      did = False
       names = []
       for name in from_db(db, template):
         if not did:

@@ -1,0 +1,4 @@
+include sample/files/*
+include sample/files/temp/*
+include sample/files/temp/downloads/*
+
