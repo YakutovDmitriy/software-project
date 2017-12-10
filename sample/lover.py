@@ -66,15 +66,22 @@ def from_db(db, template):
     if cur == template:
       yield ' '.join(words)
 
-def main_loop():
+def main_loop(break_event=None, type_answer=False):
+  print('start main loop')
   last_temps = []
   max_size = 5
   with open(in_files('bbox.cfg')) as cfg:
     bbox = eval(cfg.readline())
     click = (bbox[2] + 20, (bbox[1] + bbox[3]) // 2)
+  if break_event != None and break_event.is_set():
+    return
   with open(in_files('db.txt')) as dbf:
     db = load_db(dbf)
+  if break_event != None and break_event.is_set():
+    return
   while True:
+    if break_event != None and break_event.is_set():
+      return
     template = from_display(bbox)
     if template != None and not (template in last_temps):
       did = False
@@ -85,8 +92,13 @@ def main_loop():
           did = True
         print(name)
         names.append(name)
-      secs = random.randint(3, 7)
-      type_keyboard(names, click, secs)
+      if break_event != None and break_event.is_set():
+        break
+      if len(names) > 0 and type_answer: 
+        secs = random.randint(3, 7)
+        type_keyboard(names, click, secs)
+    if break_event != None and break_event.is_set():
+      return
     if template != None:
       if template in last_temps:
         last_temps.remove(template)

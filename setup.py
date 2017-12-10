@@ -24,8 +24,9 @@ setup(
   zip_safe=False,
   entry_points={
     'console_scripts': [
-      'lover=sample.lover:main_loop',
-      'config_lover=sample.config_bbox:main'
+      'mainloop=sample.lover:main_loop',
+      'config_bbox=sample.config_bbox:main',
+      'lover=sample.app:main'
     ]
   }
 )
