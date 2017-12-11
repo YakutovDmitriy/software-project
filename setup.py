@@ -1,4 +1,5 @@
 from setuptools import setup
+import os
 
 with open('README.md') as f:
   readme = f.read()
@@ -9,6 +10,10 @@ with open('LICENSE') as f:
 with open('requirements.txt') as f:
   requires = list(map(str.strip, f.readlines()))
 
+temp_dir = os.path.join('sample', 'files', 'temp')
+if not os.path.exists(temp_dir):
+  os.mkdir(temp_dir)
+  
 setup(
   name='thesongclash-bot',
   version='0.1.0',
