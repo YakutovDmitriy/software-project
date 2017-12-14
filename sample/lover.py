@@ -1,10 +1,14 @@
 import pyscreenshot as grabber
 from PIL import Image
 import numpy as np
-from .tools import arr2pic, pic2arr, bool_pic, type_keyboard, in_files, in_temps
+try:
+  from .tools import arr2pic, pic2arr, bool_pic, type_keyboard, in_files, in_temps
+except:
+  from tools import arr2pic, pic2arr, bool_pic, type_keyboard, in_files, in_temps
 import random
 import os
 import glob, sys
+import tkinter as tk
 
 def from_display(bbox):
   im = grabber.grab(bbox=bbox)
@@ -66,7 +70,7 @@ def from_db(db, template):
     if cur == template:
       yield ' '.join(words)
 
-def main_loop(break_event=None, type_answer=False):
+def main_loop(break_event=None, type_answer=False, text_field=None):
   print('start main loop')
   last_temps = []
   max_size = 5
@@ -89,9 +93,16 @@ def main_loop(break_event=None, type_answer=False):
       for name in from_db(db, template):
         if not did:
           print('-------------------------')
+          if text_field != None:
+            text_field.config(state=tk.NORMAL)
+            text_field.delete(1.0, tk.END)
           did = True
         print(name)
+        if text_field != None:
+          text_field.insert(tk.END, name + '\n')
         names.append(name)
+      if text_field != None:
+        text_field.config(state=tk.DISABLED)
       if break_event != None and break_event.is_set():
         break
       if len(names) > 0 and type_answer: 

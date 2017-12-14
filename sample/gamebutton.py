@@ -3,10 +3,11 @@ from .lover import main_loop
 import threading
 
 class GameButton:
-  __slots__ = ['button', 'name', 'type_answer', 'thread', 'exs', 'break_event', 'state']
-  def __init__(self, button, buttonName, type_answer):
+  __slots__ = ['button', 'name', 'type_answer', 'thread', 'exs', 'break_event', 'state', 'text_field']
+  def __init__(self, button, buttonName, type_answer, text_field):
     self.button = button
     self.button.bind('<Button-1>', self.flip)
+    self.text_field = text_field
     self.name = buttonName.lower()
     self.type_answer = type_answer
     self.thread = None
@@ -24,7 +25,7 @@ class GameButton:
     for gb in self.exs:
       gb.stop()
     self.thread = threading.Thread(target=main_loop,
-          name='game', args=(self.break_event, self.type_answer))
+          name='game', args=(self.break_event, self.type_answer, self.text_field))
     self.thread.start()
     self.button['text'] = 'Stop %s' % self.name
     self.state = 'start'

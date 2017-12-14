@@ -1,7 +1,10 @@
 import pyscreenshot as grabber
 from PIL import Image
 import numpy as np
-from .tools import arr2pic, pic2arr, bool_pic, in_files, in_temps
+try:
+  from .tools import arr2pic, pic2arr, bool_pic, in_files, in_temps
+except:
+  from tools import arr2pic, pic2arr, bool_pic, in_files, in_temps
 import sys
 
 def config_bbox():
@@ -17,7 +20,7 @@ def config_bbox():
     for j in range(m):
       if np.array_equal(a[i,j], red):
         good[i, j] = True
-  # bool_pic(good).save(in_temps('conf_bool.png'))
+  bool_pic(good).save(in_temps('conf_bool.png'))
   bbox = None
   used = np.zeros((n, m), dtype=bool)
   for i in range(n):
