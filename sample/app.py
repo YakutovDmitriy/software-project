@@ -5,7 +5,7 @@ from .configbutton import ConfigButton
 
 def main():
   root = tk.Tk()
-  shape = (190, 400)
+  shape = (300, 550)
   root.geometry('%dx%d' % shape)
   root.title('Song lover')
 

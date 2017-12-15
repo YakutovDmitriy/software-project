@@ -3,8 +3,11 @@ from .lover import main_loop
 import threading
 from .config_bbox import main
 
+
 class ConfigButton:
+  
   __slots__ = ['button', 'name', 'thread', 'gamebuttons']
+  
   def __init__(self, button, buttonName, gamebuttons):
     self.button = button
     self.button.bind('<Button-1>', self.config)

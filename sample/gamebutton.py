@@ -2,8 +2,11 @@ import tkinter as tk
 from .lover import main_loop
 import threading
 
+
 class GameButton:
+  
   __slots__ = ['button', 'name', 'type_answer', 'thread', 'exs', 'break_event', 'state', 'text_field']
+
   def __init__(self, button, buttonName, type_answer, text_field):
     self.button = button
     self.button.bind('<Button-1>', self.flip)

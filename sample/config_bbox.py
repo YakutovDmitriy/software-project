@@ -1,11 +1,9 @@
 import pyscreenshot as grabber
 from PIL import Image
 import numpy as np
-try:
-  from .tools import arr2pic, pic2arr, bool_pic, in_files, in_temps
-except:
-  from tools import arr2pic, pic2arr, bool_pic, in_files, in_temps
+from .tools import arr2pic, pic2arr, bool_pic, in_files, in_temps
 import sys
+
 
 def config_bbox():
   red_pic = Image.open(in_files('red.png'))
@@ -41,17 +39,19 @@ def config_bbox():
         minx, maxx = q[:,0].min(), q[:,0].max()
         miny, maxy = q[:,1].min(), q[:,1].max()
         if maxx - minx > 270 and maxy - miny > 270:
-          assert bbox == None
+          assert bbox is None
           bbox = (miny, minx, maxy, (5 * maxx + 4 * minx) // 9)
   assert bbox != None, 'you should launch confix_bbox when the circle is almost red'
   print("bbox is", bbox, file=sys.stderr)
   grabber.grab(bbox).save(in_temps('X.png'))
   return bbox
   
+
 def main():
   bbox = config_bbox()
   with open(in_files('bbox.cfg'), 'w') as b:
     print(bbox, file=b)
+
 
 if __name__ == '__main__':
   main()
