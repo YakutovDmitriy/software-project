@@ -8,7 +8,7 @@ import sys
 def config_bbox():
   red_pic = Image.open(in_files('red.png'))
   red = pic2arr(red_pic)[0,0,:3]
-  
+
   im = grabber.grab()
   im.save(in_temps('config_scrsht.png'))
   a = pic2arr(im)
@@ -45,7 +45,7 @@ def config_bbox():
   print("bbox is", bbox, file=sys.stderr)
   grabber.grab(bbox).save(in_temps('X.png'))
   return bbox
-  
+
 
 def main():
   bbox = config_bbox()

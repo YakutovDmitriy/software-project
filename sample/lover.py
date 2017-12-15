@@ -2,12 +2,13 @@ from .songsdb import SongsDB
 from .templategrabber import TemplateGrabber
 from .tools import type_keyboard, in_files
 import glob
-import random
 import sys
 import tkinter as tk
 
 
-def main_loop(break_event=None, type_answer=False, text_field=None):
+def main_loop(break_event=None, type_answer=False, text_field=None, get_wait_time=None):
+  if get_wait_time is None:
+    get_wait_time = lambda: random.randint(3, 7)
   print('start main loop', file=sys.stderr)
   last_templates = []
   max_size = 5
@@ -42,9 +43,8 @@ def main_loop(break_event=None, type_answer=False, text_field=None):
         text_field.config(state=tk.DISABLED)
       if not (break_event is None) and break_event.is_set():
         break
-      if len(names) > 0 and type_answer: 
-        secs = random.randint(3, 7)
-        type_keyboard(names, click, secs)
+      if len(names) > 0 and type_answer:
+        type_keyboard(names, click, get_wait_time())
     if not (break_event is None) and break_event.is_set():
       return
     if template != None:
