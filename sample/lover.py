@@ -1,9 +1,10 @@
-from .tools import type_keyboard, in_files
-import random
-import glob, sys
-import tkinter as tk
 from .songsdb import SongsDB
 from .templategrabber import TemplateGrabber
+from .tools import type_keyboard, in_files
+import glob
+import random
+import sys
+import tkinter as tk
 
 
 def main_loop(break_event=None, type_answer=False, text_field=None):

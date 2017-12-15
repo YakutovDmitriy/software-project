@@ -1,6 +1,6 @@
 import tkinter as tk
-from .gamebutton import GameButton
 from .configbutton import ConfigButton
+from .gamebutton import GameButton
 
 
 def description():

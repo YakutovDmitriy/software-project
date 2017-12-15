@@ -1,4 +1,3 @@
-import tkinter as tk
 from .lover import main_loop
 import threading
 

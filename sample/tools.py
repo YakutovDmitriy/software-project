@@ -1,11 +1,10 @@
-import pyscreenshot as grabber
-from PIL import Image
 import numpy as np
-import win32api
-import win32con
-import win32com.client as comclt
-import time
 import os
+from PIL import Image
+import time
+import win32api
+import win32com.client as comclt
+import win32con
 
 
 def arr2pic(arr):

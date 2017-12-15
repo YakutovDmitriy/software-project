@@ -1,10 +1,9 @@
-from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
-import unicodedata
-import time
-import re
-import sys
 from .tools import in_files
+import re
+from selenium import webdriver
+import sys
+import time
+import unicodedata
 
 
 def simplify_string(s):

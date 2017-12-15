@@ -1,6 +1,6 @@
-import pyscreenshot
-import numpy as np
 from .tools import pic2arr
+import numpy as np
+import pyscreenshot
 
 
 class TemplateGrabber:

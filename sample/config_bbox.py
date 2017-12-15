@@ -1,7 +1,7 @@
-import pyscreenshot as grabber
-from PIL import Image
+from .tools import pic2arr, bool_pic, in_files, in_temps
 import numpy as np
-from .tools import arr2pic, pic2arr, bool_pic, in_files, in_temps
+from PIL import Image
+import pyscreenshot as grabber
 import sys
 
 
