@@ -3,6 +3,18 @@ from .gamebutton import GameButton
 from .configbutton import ConfigButton
 
 
+def description():
+  return """Hi guys.
+
+This is bot for songclash game.
+It can help you to guess songs or guess them without your involvement.
+
+This bot can work in background, but game webpage must be visible.
+
+Have a nice game!
+"""
+
+
 def main():
   root = tk.Tk()
   shape = (300, 550)
@@ -21,7 +33,7 @@ def main():
 
   text_field = tk.Text(frame)
   text_field.grid(row=3, sticky=tk.N + tk.S + tk.E + tk.W)
-  text_field.insert(tk.END, 'Hi there.')
+  text_field.insert(tk.END, description())
   text_field.config(state=tk.DISABLED)
 
   typeButton = GameButton(button=tk.Button(frame), 
