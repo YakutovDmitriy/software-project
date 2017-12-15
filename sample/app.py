@@ -29,18 +29,16 @@ def main():
   tk.Grid.columnconfigure(root, 0, weight=1)
   frame.grid(row=0, column=0, sticky=tk.N + tk.S + tk.E + tk.W)
   grid = tk.Frame(frame)
-  grid.grid(sticky=tk.N + tk.S + tk.E + tk.W, column=0, row=4, columnspan=2)
-  tk.Grid.rowconfigure(frame, 3, weight=1)
+  grid.grid(sticky=tk.N + tk.S + tk.E + tk.W, column=0, row=5, columnspan=2)
+  tk.Grid.rowconfigure(frame, 4, weight=1)
   tk.Grid.columnconfigure(frame, 0, weight=1)
 
   text_field = tk.Text(frame)
-  text_field.grid(row=4, sticky=tk.N + tk.S + tk.E + tk.W)
   text_field.insert(tk.END, description())
   text_field.config(state=tk.DISABLED)
 
   waiter = tk.Scale(frame, label='Wait before answer (in seconds)',
         length=int(shape[1] * 0.9), orient=tk.HORIZONTAL, from_=3.0, to=20.0)
-  waiter.grid(row=1, sticky=tk.N + tk.S + tk.E + tk.W)
 
   def get_wait_time(waiter):
     left = max(0, waiter.get() - 0.5)
@@ -52,17 +50,21 @@ def main():
   typeButton = GameButton(button=tk.Button(frame),
         buttonName='type answers', type_answer=True, text_field=text_field,
         get_wait_time=lambda: get_wait_time(waiter))
-  typeButton.button.grid(row=0, sticky=tk.N + tk.S + tk.E + tk.W)
 
   tipsButton = GameButton(button=tk.Button(frame),
         buttonName='show tips', type_answer=False, text_field=text_field)
-  tipsButton.button.grid(row=2, sticky=tk.N + tk.S + tk.E + tk.W)
 
   GameButton.exclusive(typeButton, tipsButton)
 
   confButton = ConfigButton(button=tk.Button(frame),
         buttonName='find circle', gamebuttons=(typeButton, tipsButton))
+  # confButton.button.config(height=30)
+
+  typeButton.button.grid(row=0, sticky=tk.N + tk.S + tk.E + tk.W)
+  waiter.grid(row=1, sticky=tk.N + tk.S + tk.E + tk.W)
+  tipsButton.button.grid(row=2, sticky=tk.N + tk.S + tk.E + tk.W)
   confButton.button.grid(row=3, sticky=tk.N + tk.S + tk.E + tk.W)
+  text_field.grid(row=4, sticky=tk.N + tk.S + tk.E + tk.W)
 
   def stopall(root, *games):
     for x in games:
