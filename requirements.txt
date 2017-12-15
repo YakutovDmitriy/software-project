@@ -2,4 +2,3 @@ pillow
 pypiwin32
 pyscreenshot
 selenium
-tkinter
